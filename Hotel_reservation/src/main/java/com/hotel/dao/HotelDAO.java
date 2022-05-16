@@ -192,7 +192,7 @@ public class HotelDAO {
 
 	public List<Room> emptyRoom() {
 		final String emptyRoomQuery = "SELECT r.객실호수, r.객실등급, r.청소상태 FROM "
-				+ "room AS r JOIN reservation AS resvs ON r.객실호수 != resvs.객실호수 WHERE r.청소상태 = 1 ORDER BY r.객실호수";
+				+ "room AS r JOIN reservation AS resvs ON r.객실호수 != resvs.객실호수 WHERE r.청소상태 = 1 GROUP BY r.객실호수 ORDER BY r.객실호수";
 		final List<Room> emptyRooms = new ArrayList<>();
 		
 		try (Connection conn = DBUtils.getConnection();
