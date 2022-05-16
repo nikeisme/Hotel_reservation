@@ -24,8 +24,8 @@ public class Customer {
 	
 	@Override
 	public String toString() {
-		return "Customer [customer_id=" + customer_id + ", callNumber=" + callNumber + ", name=" + name + ", birth="
-				+ birth + ", age=" + age + "]";
+		return "Customer [회원ID=" + customer_id + ", 고객연락처=" + callNumber + ", 고객 이름=" + name + ", 생년월일="
+				+ birth + ", 나이=" + age + "]";
 	}
 
 
