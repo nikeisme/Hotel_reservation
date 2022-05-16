@@ -74,21 +74,19 @@ public class App
 				//고객 정보 입력
 				System.out.println("고객 이름 입력 :  ");
 				String name = input.next();
-				System.out.println("고객 ID 입력 :  ");
-				long customerId = input.nextLong();
+				System.out.println("고객 연락처 입력 :  ");
+				String callNumber = input.next();
 				
 				//예약 정보 입력
 				System.out.println("입실 날짜 입력 :  ");
 				String checkIn = input.next();
 				System.out.println("퇴실 날짜 입력 :  ");
 				String checkOut = input.next();
-				
-				
 				System.out.println("예약 인원 :  ");
 				int numOfPeople = input.nextInt();
 				resrv = Reservation.builder().checkIn(Date.valueOf(checkIn)).checkOut(Date.valueOf(checkOut)).numOfPeople(numOfPeople).build();
 				
-				hotelController.reservationRoom(roomNumber, customerId, name, resrv);
+				hotelController.reservationRoom(roomNumber, callNumber, name, resrv);
 				break;
 			case 0 :
 				menuChoice = false;

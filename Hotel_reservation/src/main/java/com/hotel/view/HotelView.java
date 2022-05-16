@@ -67,11 +67,9 @@ public class HotelView {
 	
 	
 	
-	public void reservationRoom(Reservation rsv) {
+	public void reservationRoom() {
 //		System.out.println("'" + rsv.getCustomer_id() +"'");
-		
-		
-		
+		System.out.println("예약 완료 되었습니다.");
 		
 	}
 

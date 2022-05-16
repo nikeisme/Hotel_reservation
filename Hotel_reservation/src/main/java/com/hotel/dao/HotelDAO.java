@@ -211,8 +211,9 @@ public class HotelDAO {
 	}
 
 	
-	public int reservationRoom(int roomNumber, long c_ID, String name, Reservation resrv) {
-		String insertQuery = "INSERT INTO reservation (객실호수, 회원ID, 입실일, 퇴실일, 숙박여부, 예약인원)  + VALUES ("+ roomNumber + ", (SELECT 회원ID FROM customer WHERE 이름=" + name + " OR 회원ID= +" + c_ID +"), ?, ?, ?, ?)";
+	public int reservationRoom(int roomNumber, String callNumber, String name, Reservation resrv) {
+		String insertQuery = "INSERT INTO reservation (객실호수, 회원ID, 입실일, 퇴실일, 예약인원) VALUES (" + roomNumber + ", (SELECT c.회원ID FROM customer c WHERE 이름='" + name +"' AND 연락처='" + callNumber +"' ), ?, ?, ?);";
+		//String insertQuery = "INSERT INTO reservation (객실호수, 회원ID, 입실일, 퇴실일, 예약인원) VALUES (" + roomNumber + ", (SELECT 회원ID FROM customer WHERE 이름=" + name +" OR 회원ID=" + c_ID +" ), ?, ?, ?);";
 		
 //		String iQuery = "INSERT INTO reservation (객실호수, 회원ID, 입실일, 퇴실일, 숙박여부, 예약인원) VALUES (101, (SELECT 회원ID FROM customer WHERE 이름="+ name +" OR 회원ID=100011), ?, ?, ?, ?);";
 		
@@ -221,6 +222,7 @@ public class HotelDAO {
 		try (Connection conn = DBUtils.getConnection();
 			PreparedStatement psmt = createPreparedStatement(conn, insertQuery, resrv);)
 		{
+			System.out.println(psmt);
 			addedRows = psmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -234,8 +236,7 @@ public class HotelDAO {
 		
 		pstmt.setDate(1, rsv.getCheckIn());
 		pstmt.setDate(2, rsv.getCheckOut());
-		pstmt.setBoolean(3, rsv.isStaying());
-		pstmt.setInt(4, rsv.getNumOfPeople());
+		pstmt.setInt(3, rsv.getNumOfPeople());
 		return pstmt;
 	}
 

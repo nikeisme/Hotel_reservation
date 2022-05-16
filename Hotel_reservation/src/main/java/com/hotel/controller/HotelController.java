@@ -76,8 +76,12 @@ public class HotelController {
 		hotelView.emptyRoom(hotelService.emptyRoom());
 	}
 	//객실 예약(등록)
-	public void reservationRoom(int roomNumber, long c_ID, String name, Reservation resrv) {
-		hotelService.reservationRoom(roomNumber, c_ID, name, resrv);
+	public void reservationRoom(int roomNumber, String callNumber, String name, Reservation resrv) {
+		if (hotelService.reservationRoom(roomNumber, callNumber, name, resrv) > 0 ) {
+			hotelView.reservationRoom();
+		}else {
+			hotelView.errorPage();
+		}
 		
 	}
 	

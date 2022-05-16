@@ -35,11 +35,11 @@ public class HotelService {
 		return hotelDAO.findRoom();
 	}
 	
-	public int reservationRoom(int roomNumber, long c_ID, String name, Reservation resrv ) {
+	public int reservationRoom(int roomNumber, String callNumber, String name, Reservation resrv ) {
 		Scanner input = new Scanner(System.in);
 		Customer newMember;
 		if(findMember(name) != null) {
-			return hotelDAO.reservationRoom(roomNumber, c_ID, name, resrv);
+			return hotelDAO.reservationRoom(roomNumber, callNumber, name, resrv);
 		}else { //예약 등록 중 고객 이름이 없다면 새 회원 등록
 			System.out.println("고객 이름 입력 :  ");
 			String newName = input.next();
